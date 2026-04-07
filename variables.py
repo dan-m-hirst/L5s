@@ -1,20 +1,20 @@
 # --- Player GIFs ---
 player_images = {
-    "Jacob Stokes": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKAbxsF4po4n8NRr893upXBUCyz3B2_h-ZzQ&s",
-    "Daniel Hirst": "https://www.firmastella.com/wp-content/uploads/2024/11/hr-hirst.jpg",
-    "Mark McGlinchey": "https://pbs.twimg.com/media/GOiFopxXYAA0vSy.jpg",
-    "Kevin": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs_HFqpluDRv7K0jY-wrfPqSyz2lNFEUUI2w&s",
-    "Jamie Dobbs": "https://upload.wikimedia.org/wikipedia/commons/3/38/Jamie_Oliver_%28cropped%29.jpg",
-    "James King": "https://media.cnn.com/api/v1/images/stellar/prod/230508143040-01c-king-charles-official-portrait-0508.jpg?c=original",
-    "Steven Robinson": "https://i.makeagif.com/media/6-26-2015/8zvaxF.gif",
-    "Rory Scullin": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBmo64c-9oqlz3HgNQSqftgRzNrDVJrtP38A&s",
-    "Callum Goodyear": "https://i.ytimg.com/vi/SfmVwWGIRKM/maxresdefault.jpg",
-    "Michael Dixon": "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p29708751_b_v13_ad.jpg",
+    "Jacob Stokes": "https://i0.wp.com/www.5-a-side.com/wp-content/uploads/2016/11/Wash-Football-Bibs.png",
+    "Rory Scullin": "https://media.tenor.com/Aoz9_qKxxiIAAAAM/cry-sad.gif",
+    "Josh": "https://www.theodysseyonline.com/media-library/image.gif?id=56296612&width=210",
+    "Steven Robinson": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F8c4e4a00-8ecd-406d-bcf4-a08506298679.jpg?source=next-article&fit=scale-down&quality=highest&width=700&dpr=1",
+    "Toby Munson": "https://media.tenor.com/cOsiTargIp8AAAAM/hes-back.gif",
+    "Callum Goodyear": "https://img.gifglobe.com/grabs/inbetweeners/S01E04/gif/pVaj9AyGJBzO.gif",
+    "Jamie Dobbs": "https://media.tenor.com/wYZGlNQzWzMAAAAM/jamie-king-ponste9.gif",
+    "Michael Dixon": "https://mediacdn.mancity.com/-/media/images/home/news/team-news/2011-2012-season/the-graduates/dickson-etuhu-grad2.ashx?width=1620",
+    "Daniel Hirst": "https://static.euronews.com/articles/stories/08/31/79/86/1200x675_cmsv2_39ce878d-73fb-5f1e-b404-c3be8899b4f4-8317986.jpg",
+    "Oliver Deverall": "https://valuestats.com/uploads/referees/referee_67b58991607cd.webp",
 
-    "Toby Munson": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnp7giyKeCdxXgwGiPxvn9RAdZxcPV2Hjgtg&s",
-    "Callum Ringer": "Callum_Ringer.png",
+    "James King": "https://media.cnn.com/api/v1/images/stellar/prod/230508143040-01c-king-charles-official-portrait-0508.jpg?c=original",
+    "Mark McGlinchey": "https://pbs.twimg.com/media/GOiFopxXYAA0vSy.jpg",
     "John Bridgeman": "https://i.ytimg.com/vi/Uj5iPDcRiUg/maxresdefault.jpg",
-    "Oliver Deverall": "https://cdn.apollo.audio/one/media/67ea/bef4/6652/c18e/45ef/7497/Olly-Murs.jpg?quality=80&format=jpg&crop=0,0,2540,4510&resize=crop"
+    
 }
 
 player_stats = {

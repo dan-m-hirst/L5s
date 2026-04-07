@@ -9,24 +9,58 @@ def check_pairs(team, pairs):
     return conflicts
 
 
-def generate_teams(pot_1, base_team_A, base_team_B, previous_teams):
+def generate_teams(base_team_A, base_team_B, previous_teams, *pots):
+    if not pots:
+        raise ValueError("At least one pot must be provided")
+
+    if len(pots) > 3:
+        raise ValueError("A maximum of 3 pots is supported")
+
     while True:
         team_A = base_team_A.copy()
         team_B = base_team_B.copy()
 
-        # ---- POT 1 ----
-        pot1_selected_for_A = random.sample(pot_1, 2)
-        pot1_remaining_for_B = [p for p in pot_1 if p not in pot1_selected_for_A]
+        for pot in pots:
+            mode, players = _normalise_pot(pot)
 
-        team_A.extend(pot1_selected_for_A)
-        team_B.extend(pot1_remaining_for_B)
+            if mode == "split":
+                if len(players) % 2 != 0:
+                    raise ValueError("Each split pot must contain an even number of players")
+
+                players_for_a = random.sample(players, len(players) // 2)
+                players_for_b = [player for player in players if player not in players_for_a]
+                team_A.extend(players_for_a)
+                team_B.extend(players_for_b)
+                continue
+
+            if mode == "keep":
+                if len(team_A) < len(team_B):
+                    team_A.extend(players)
+                elif len(team_B) < len(team_A):
+                    team_B.extend(players)
+                elif random.choice([True, False]):
+                    team_A.extend(players)
+                else:
+                    team_B.extend(players)
+                continue
+
+            raise ValueError(f"Unsupported pot mode: {mode}")
 
         contained_A, _ = is_team_previously_contained(team_A, previous_teams)
         contained_B, _ = is_team_previously_contained(team_B, previous_teams)
 
-        # ✅ Check both teams
         if not contained_A and not contained_B:
             return team_A, team_B
+
+
+def _normalise_pot(pot):
+    if isinstance(pot, tuple):
+        if len(pot) != 2:
+            raise ValueError("Pot tuples must be in the format: (mode, players)")
+        mode, players = pot
+        return mode, list(players)
+
+    return "split", list(pot)
 
 
 def is_team_previously_contained(new_team, previous_teams):

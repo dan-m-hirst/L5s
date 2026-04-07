@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 from itertools import combinations
 
@@ -18,7 +17,6 @@ def convert_to_player_table(df):
     df = df.copy()
 
     total_goals = df["Goals"].sum()
-    print(total_goals)
 
     # Ensure Result column is uppercase
     df["Result"] = df["Result"].str.upper()

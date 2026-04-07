@@ -1,3 +1,4 @@
+import base64
 import time
 import uuid
 import streamlit as st
@@ -31,20 +32,27 @@ def say(text,text_box, delay=4):
     time.sleep(delay)
 
 
+def pause(delay):
+    time.sleep(delay)
+
+
 def clear_text_box(text_box):
     """Clear text box and reset log."""
     st.session_state["log"] = []
+    text_box.markdown("", unsafe_allow_html=True)
     text_box.empty()
 
 
-def pick_work(a_or_b, pick, gif_box, remaining_players,teamA, teamB, teamA_box, teamB_box, caption_box):
+def pick_work(a_or_b, pick, gif_box, remaining_players,teamA, teamB, teamA_box, teamB_box, caption_box, center_box):
     # caption_box.markdown(f"**{player_stats.get(pick, 'A true wildcard.')}**")
     time.sleep(1.5)
 
-    gif_box.image(v.player_images.get(pick), width=300)
-    time.sleep(3)
+    player_image = v.player_images.get(pick)
+    if player_image:
+        gif_box.image(player_image, width=300)
+        time.sleep(3)
 
-    show_center(remaining_players, highlight=pick, drift="left")
+    show_center(remaining_players, center_box, highlight=pick, drift="left")
     if a_or_b == "A":
         teamA.append(pick)
     if a_or_b == "B":
@@ -54,7 +62,7 @@ def pick_work(a_or_b, pick, gif_box, remaining_players,teamA, teamB, teamA_box, 
     gif_box.empty()
     caption_box.empty()
     remaining_players.remove(pick)
-    show_center(remaining_players)
+    show_center(remaining_players, center_box)
 
 
 def spin_image(
