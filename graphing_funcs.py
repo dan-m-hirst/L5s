@@ -3,7 +3,7 @@ import pandas as pd
 from numpy import pi
 import plotly.graph_objects as go
 
-raw_data_df = pd.read_csv('raw_data.csv')
+#raw_data_df = pd.read_csv('raw_data.csv')
 
 
 #### Data Prep  Functions ####
@@ -56,7 +56,7 @@ def filter_player_data(data: pd.DataFrame, list_of_players):
 
 #### radar func ######
 
-def plot_polar_chart(finaldata, list_of_players, method = 'prop'):
+def plot_polar_chart(finaldata, list_of_players, method = 'prop', return_obj = False):
     tot_players = len(finaldata['Name'].unique())
     filt_data = filter_player_data(finaldata, list_of_players)
     max_rank = finaldata['Rank'].max()
@@ -71,8 +71,8 @@ def plot_polar_chart(finaldata, list_of_players, method = 'prop'):
 
     fig = go.Figure()
 
-    no_players = len(filt_data['Name'].unique())
-    no_cols = len(filt_data['Stat'].unique())
+    no_players = max(len(filt_data['Name'].unique()),1)
+    no_cols = max(len(filt_data['Stat'].unique()),1)
     sectionwidth = 2*pi/no_cols
     buffer = 0 #0.05*sectionwidth
     colwidth = (sectionwidth - buffer)/no_players
@@ -113,7 +113,10 @@ def plot_polar_chart(finaldata, list_of_players, method = 'prop'):
             )
         )
     )
-    fig.show()
+    if return_obj:
+        return fig
+    else:
+        fig.show()
 
 def plot_radar_chart(finaldata, list_of_players, method = 'prop'):
     filt_data = filter_player_data(finaldata, list_of_players)
@@ -138,6 +141,8 @@ def plot_radar_chart(finaldata, list_of_players, method = 'prop'):
     )
     fig.update_traces(fill='toself') 
     fig.show()
+
+
 
 
 #simplified plot testing
@@ -170,19 +175,30 @@ def plot_radar_chart(finaldata, list_of_players, method = 'prop'):
 
 #### Testing params; would need integrating into a tab ####
 
-player1 = 'Daniel Hirst'
-player2 = 'Jacob Stokes'
-player3 = 'James King'
+# player1 = 'Daniel Hirst'
+# player2 = 'Jacob Stokes'
+# player3 = 'James King'
 
-player_list = [player1, player2, player3]
-
-
-#### Main process ####
-grouped_data = prepare_data(raw_data_df).reset_index()
-grouped_datam = get_max_mins(grouped_data)
-
-print(grouped_datam) # debug
+# player_list = [player1, player2, player3]
 
 
-plot_polar_chart(grouped_datam, player_list, 'rank')
+# #### Main process ####
+# grouped_data = prepare_data(raw_data_df).reset_index()
+# grouped_datam = get_max_mins(grouped_data)
+
+# print(grouped_datam) # debug
+
+
+# plot_polar_chart(grouped_datam, player_list, 'rank')
+
+def _render_comp_chart(df, player_list, method = 'prop'):
+    grouped_data = prepare_data(df).reset_index()
+    grouped_datam = get_max_mins(grouped_data)
+    
+    chart = plot_polar_chart(grouped_datam, player_list, method, True)
+    
+    return chart
+
+
+
 #plot_radar_chart(grouped_datam, player_list)
