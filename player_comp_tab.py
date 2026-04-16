@@ -22,9 +22,13 @@ def create_graph_title(players):
 
           
 
-def _grab_chart(df, players):
+def _grab_chart(df, players, type_of_graph):
     #players = ["Daniel Hirst", "Jacob Stokes"]
-    recoloured_plot = _render_comp_chart(df, players, 'rank')
+    if type_of_graph == "Radar":
+        recoloured_plot = _render_comp_chart(df, players, 'rank')
+    else:
+        recoloured_plot = _render_comp_chart(df, players, 'rank', False)
+
     recoloured_plot.update_layout(
         {'legend_font_size':20,
          'font_size':18,
@@ -47,11 +51,13 @@ def _render_player_comparisons(df: pd.DataFrame):
     st.title("Player Comparison Tool")
     list_of_players = df["Name"].unique()
     chosen_players = list_of_players[[0, 10]]
+    graph_type = "Radar"
     # with st.sidebar: interesting but not right for this
     formcol, graphcol = st.columns([0.2,0.8])
     with formcol:
         with st.form("my form"):
             st.form_submit_button('Update Comparison')
+            graph_type = st.radio("Plot type:", ["Radar","Bar"])
             chosen_players = st.multiselect(
                 "Select players to compare:",
                 list_of_players,
@@ -59,6 +65,6 @@ def _render_player_comparisons(df: pd.DataFrame):
             )
     with graphcol:
         if chosen_players:
-                _grab_chart(df, chosen_players)
+                _grab_chart(df, chosen_players, graph_type)
         else:
             st.text("NO PLAYERS SELECTED")
